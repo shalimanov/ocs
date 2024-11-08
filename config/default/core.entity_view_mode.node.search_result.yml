@@ -1,0 +1,13 @@
+uuid: 8ae92a00-2feb-4baa-b037-29056d8d7437
+langcode: uk
+status: false
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: d8wBEm7XvJ6H3S0IneDD9PfTBklPIH7GMpxElVemPf8
+id: node.search_result
+label: 'Підсвічене введення результатів пошуку'
+description: ''
+targetEntityType: node
+cache: true

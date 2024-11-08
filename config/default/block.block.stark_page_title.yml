@@ -1,0 +1,20 @@
+uuid: a4e565cd-267a-4cbc-bea2-ff88a92b9550
+langcode: uk
+status: true
+dependencies:
+  theme:
+    - stark
+_core:
+  default_config_hash: Oh72CHUkp6cj6dbrXMK2hzCsM05w9cHVoD22rMLQUfk
+id: stark_page_title
+theme: stark
+region: content
+weight: -30
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Заголовок сторінки'
+  label_display: '0'
+  provider: core
+visibility: {  }

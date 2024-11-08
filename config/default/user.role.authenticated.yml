@@ -1,0 +1,14 @@
+uuid: 2fefc4de-f850-427f-af3a-29c6fe8fe283
+langcode: uk
+status: true
+dependencies:
+  module:
+    - system
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Авторизований користувач'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
