@@ -1,0 +1,10 @@
+entity.ocs_car.edit_form:
+  route_name: entity.ocs_car.edit_form
+  group: ocs_car
+  title: 'Edit'
+
+entity.ocs_car.delete_form:
+  route_name: entity.ocs_car.delete_form
+  group: ocs_car
+  title: 'Delete'
+  weight: 10

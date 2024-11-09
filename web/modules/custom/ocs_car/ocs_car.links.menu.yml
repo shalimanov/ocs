@@ -1,0 +1,11 @@
+entity.ocs_car.settings:
+  title: 'Car'
+  description: 'Configure a Car entity type.'
+  route_name:  entity.ocs_car.settings
+  parent: system.admin_structure
+
+entity.ocs_car.collection:
+  title: 'Cars'
+  description: 'List of cars.'
+  route_name: entity.ocs_car.collection
+  parent: system.admin_content

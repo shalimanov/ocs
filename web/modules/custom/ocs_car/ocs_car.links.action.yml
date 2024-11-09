@@ -1,0 +1,5 @@
+ocs_car.add_form:
+  title: 'Add car'
+  route_name: entity.ocs_car.add_form
+  appears_on:
+    - entity.ocs_car.collection

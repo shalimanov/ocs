@@ -1,0 +1,17 @@
+administer ocs_car:
+  title: 'Administer cars'
+  restrict access: true
+view ocs_car:
+  title: 'View car'
+edit ocs_car:
+  title: 'Edit car'
+delete ocs_car:
+  title: 'Delete car'
+create ocs_car:
+  title: 'Create car'
+view ocs_car revision:
+  title: 'View car revision'
+revert ocs_car revision:
+  title: 'Revert car revision'
+delete ocs_car revision:
+  title: 'Delete car revision'

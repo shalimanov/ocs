@@ -1,0 +1,22 @@
+entity.ocs_car.settings:
+  title: 'Settings'
+  route_name: entity.ocs_car.settings
+  base_route: entity.ocs_car.settings
+entity.ocs_car.view:
+  title: 'View'
+  route_name: entity.ocs_car.canonical
+  base_route: entity.ocs_car.canonical
+entity.ocs_car.edit_form:
+  title: 'Edit'
+  route_name: entity.ocs_car.edit_form
+  base_route: entity.ocs_car.canonical
+entity.ocs_car.delete_form:
+  title: 'Delete'
+  route_name: entity.ocs_car.delete_form
+  base_route: entity.ocs_car.canonical
+  weight: 10
+entity.ocs_car.collection:
+  title: 'Cars'
+  route_name: entity.ocs_car.collection
+  base_route: system.admin_content
+  weight: 10

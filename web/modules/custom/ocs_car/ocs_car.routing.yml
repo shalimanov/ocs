@@ -1,0 +1,7 @@
+entity.ocs_car.settings:
+  path: 'admin/structure/ocs-car'
+  defaults:
+    _form: '\Drupal\ocs_car\Form\CarSettingsForm'
+    _title: 'Car'
+  requirements:
+    _permission: 'administer ocs_car'

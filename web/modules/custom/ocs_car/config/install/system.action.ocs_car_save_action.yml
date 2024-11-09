@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ocs_car
+id: ocs_car_save_action
+label: 'Save cars'
+type: ocs_car
+plugin: entity:save_action:ocs_car
+configuration: {  }

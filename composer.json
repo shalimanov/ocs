@@ -25,6 +25,7 @@
         "drupal/pathauto": "^1.13",
         "drupal/search_api": "^1.35",
         "drupal/search_api_solr": "^4.3",
+        "drupal/shs": "^3.0@dev",
         "drupal/typed_entity": "^4.1",
         "drush/drush": "^13.3"
     },
