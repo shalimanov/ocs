@@ -1,0 +1,9 @@
+_core:
+  default_config_hash: SghOngDYqZLWSxopgX9y4xC7BIxJd3uVQTn3m3rKfps
+settings:
+  clients:
+    -
+      client_id: chatgpt
+      api_key: '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'
+      endpoint: 'https://api.openai.com/v1/completions'
+  default_client: chatgpt

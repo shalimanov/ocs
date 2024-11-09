@@ -27,7 +27,8 @@
         "drupal/search_api_solr": "^4.3",
         "drupal/shs": "^3.0@dev",
         "drupal/typed_entity": "^4.1",
-        "drush/drush": "^13.3"
+        "drush/drush": "^13.3",
+        "phpstan/phpstan-phpunit": "^1.4"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -35,6 +36,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
+        "bin-dir": "bin",
         "allow-plugins": {
             "composer/installers": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,

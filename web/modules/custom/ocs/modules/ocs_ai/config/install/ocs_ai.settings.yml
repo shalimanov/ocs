@@ -1,0 +1,6 @@
+settings:
+  clients:
+    - client_id: 'chatgpt'
+      api_key: ''
+      endpoint: 'https://api.openai.com/v1/completions'
+  default_client: 'chatgpt'

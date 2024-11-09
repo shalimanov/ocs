@@ -54,6 +54,7 @@
   <testsuites>
     <testsuite name="ocs">
       <directory suffix="Test.php">./web/modules/custom/*/tests/src/Unit</directory>
+      <directory suffix="Test.php">./web/modules/custom/ocs/modules/ocs_ai/tests/src/Unit</directory>
     </testsuite>
     <testsuite name="unit">
       <file>./web/core/tests/TestSuites/UnitTestSuite.php</file>

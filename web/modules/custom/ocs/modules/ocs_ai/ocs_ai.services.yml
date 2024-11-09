@@ -1,0 +1,15 @@
+services:
+  plugin.manager.ocs_ai_action:
+    class: Drupal\ocs_ai\OcsAiActionPluginManager
+    parent: default_plugin_manager
+
+  logger.channel.ocs_ai:
+    parent: logger.channel_base
+    arguments:
+      - 'ocs_ai'
+
+  Drupal\ocs_ai\Service\ChatGPTClient:
+    arguments:
+      - '@config.factory'
+      - '@http_client'
+      - '@logger.channel.ocs_ai'

@@ -26,7 +26,15 @@
 # Ignore composer generated libraries.
 /web/libraries
 
+# Ignore logs.
+*.log
+
+# Ignore cache.
+.phpunit.result.cache
+/web/sites/default/cache/
+
 # Ignore drupal core (if not versioning drupal sources)
+/bin
 /web/vendor
 /web/core
 /web/modules/README.txt

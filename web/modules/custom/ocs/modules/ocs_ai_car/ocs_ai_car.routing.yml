@@ -1,0 +1,7 @@
+ocs_ai_car.playground:
+  path: '/ocs-ai-car/playground'
+  defaults:
+    _title: 'Playground'
+    _controller: '\Drupal\ocs_ai_car\Controller\OcsAiCarController'
+  requirements:
+    _permission: 'access content'
