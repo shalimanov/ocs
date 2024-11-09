@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: HlN7eAN2N4JIHsYv56V4E7sqC9bS609KwvGFjyD_mgk
+langcode: uk
+uuid: dfbdc70f-20ff-4a2c-9778-08f25b54683c
+name: OCS
+mail: stas.shalimanov@gmail.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /user/login
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: uk
+mail_notification: null

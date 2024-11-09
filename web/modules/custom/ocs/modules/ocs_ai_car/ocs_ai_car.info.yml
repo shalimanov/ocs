@@ -1,0 +1,7 @@
+name: 'OCS AI Car'
+type: module
+description: 'Provides AI functionality for Cars on OCS platform.'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - ocs:ocs_ai

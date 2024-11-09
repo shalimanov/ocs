@@ -1,0 +1,9 @@
+uuid: e6c3488a-8a98-4c64-8121-78340dfde5a5
+langcode: uk
+status: true
+dependencies: {  }
+name: 'Make & Model'
+vid: make_model
+description: null
+weight: 0
+new_revision: false

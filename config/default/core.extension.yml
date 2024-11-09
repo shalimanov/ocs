@@ -29,6 +29,9 @@ module:
   locale: 0
   mysql: 0
   node: 0
+  ocs: 0
+  ocs_ai: 0
+  ocs_ai_car: 0
   ocs_car: 0
   options: 0
   page_cache: 0
