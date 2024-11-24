@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Form controller for the car entity edit forms.
  */
-final class CarForm extends ContentEntityForm {
+class CarForm extends ContentEntityForm {
 
   /**
    * {@inheritdoc}

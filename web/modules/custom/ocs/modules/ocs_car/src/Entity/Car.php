@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\ocs_car\Entity;
 
 use Drupal\Core\Entity\EntityChangedTrait;
@@ -78,7 +76,7 @@ use Drupal\ocs_car\Entity\Interface\CarInterface;
  *   field_ui_base_route = "entity.ocs_car.settings",
  * )
  */
-final class Car extends RevisionableContentEntityBase implements CarInterface {
+class Car extends RevisionableContentEntityBase implements CarInterface {
 
   use EntityChangedTrait;
   use EntityOwnerTrait;
@@ -254,6 +252,27 @@ final class Car extends RevisionableContentEntityBase implements CarInterface {
       ])
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['condition'] = BaseFieldDefinition::create('list_string')
+      ->setLabel(t('Condition'))
+      ->setDescription(t('The condition of the car.'))
+      ->setSettings([
+        'allowed_values' => [
+          'new' => 'New',
+          'used' => 'Used',
+        ],
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'options_select',
+        'weight' => 8,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'list_default',
+        'weight' => 8,
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['fuel_type'] = BaseFieldDefinition::create('list_string')
       ->setLabel(t('Fuel Type'))
       ->setDescription(t('The type of fuel used by the car.'))
@@ -398,5 +417,113 @@ final class Car extends RevisionableContentEntityBase implements CarInterface {
 
     return $fields;
   }
+
+  /**
+   * Gets the brand (label of the model term).
+   *
+   * @return string
+   *   The brand label.
+   */
+  public function getBrand(): string {
+    $model = $this->get('model')->entity->parent->entity ?? NULL;
+    return $model ? $model->label() : '';
+  }
+
+  /**
+   * Gets the model (label of the model term).
+   *
+   * @return string
+   *   The model label.
+   */
+  public function getModel(): string {
+    $model = $this->get('model')->entity ?? NULL;
+    return $model ? $model->label() : '';
+  }
+
+  /**
+   * Gets the color of car
+   *
+   * @return string
+   *   The color label.
+   */
+  public function getColor(): string {
+    $color = $this->get('color')->entity ?? NULL;
+    return $color ? $color->label() : '';
+  }
+
+  /**
+   * Gets the year of the car.
+   *
+   * @return int
+   *   The manufacturing year.
+   */
+  public function getYear(): int {
+    return $this->get('year')->value;
+  }
+
+  /**
+   * Gets the transmission of the car.
+   *
+   * @return string
+   *   The transmission type.
+   */
+  public function getTransmissionType(): string {
+    return $this->get('transmission_type')->value;
+  }
+
+  /**
+   * Gets the fuel type of the car.
+   *
+   * @return string
+   *   The fuel type.
+   */
+  public function getFuelType(): string {
+    return $this->get('fuel_type')->value;
+  }
+
+  /**
+   * Gets the body type of the car.
+   *
+   * @return string
+   *   The body type.
+   */
+  public function getBodyType(): string {
+    return $this->get('body_type')->value;
+  }
+
+  /**
+   * Gets the kilometrage of the car.
+   *
+   * @return int
+   *   The kilometrage.
+   */
+  public function getKilometrage(): int {
+    return $this->get('kilometrage')->value;
+  }
+
+  /**
+   * Gets the condition of the car.
+   *
+   * @return string
+   *   The condition.
+   */
+  public function getCondition(): string {
+    return $this->get('condition')->value;
+  }
+
+  /**
+   * Gets the price of the car as a formatted string.
+   *
+   * @return string
+   *   The price with currency code, e.g., "USD 20000".
+   */
+  public function getPrice(): string {
+    $price = $this->get('price')->first();
+    if ($price && isset($price->currency_code) && isset($price->number)) {
+      return sprintf('%s %s', $price->currency_code, number_format($price->number, 2));
+    }
+    return '';
+  }
+
 
 }

@@ -1,0 +1,4 @@
+services:
+  Drupal\ocs_ai_car\FormAlterer\CarFormAlterer:
+    arguments:
+      - '@plugin.manager.ocs_ai_action'

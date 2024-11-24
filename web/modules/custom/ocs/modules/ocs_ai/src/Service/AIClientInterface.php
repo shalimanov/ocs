@@ -7,7 +7,7 @@ namespace Drupal\ocs_ai\Service;
 /**
  * Provides interface for different AI Clients.
  */
-interface AIClient {
+interface AIClientInterface {
 
   /**
    * Sends a query to the AI service and returns the response.

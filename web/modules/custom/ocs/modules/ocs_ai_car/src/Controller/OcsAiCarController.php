@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace Drupal\ocs_ai_car\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\ocs_ai\OcsAiActionPluginManager;
+use Drupal\ocs_ai\Plugin\OcsAiAction\DescriptionGenerator;
+use Drupal\ocs_ai\Service\AIClientInterface;
 use Drupal\ocs_ai\Service\ChatGPTClient;
+use Drupal\ocs_car\Entity\Car;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -14,18 +18,24 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class OcsAiCarController extends ControllerBase {
 
   /**
-   * @var \Drupal\ocs_ai\Service\ChatGPTClient
+   * @var \Drupal\ocs_ai\Service\AIClientInterface
    *
    * ChatGPT client service
    */
-  protected ChatGPTClient $chatGptClient;
+  protected AIClientInterface $chatGptClient;
+
+  /**
+   * @var \Drupal\ocs_ai\OcsAiActionPluginManager|null
+   */
+  protected OcsAiActionPluginManager|null $aiActionManager;
 
   public static function create(
     ContainerInterface $container
   ): OcsAiCarController {
     $instance = parent::create($container);
 
-    $instance->chatGptClient = $container->get(ChatGPTClient::class);
+    $instance->chatGptClient = $container->get('ocs_ai.client.chat_gpt');
+    $instance->aiActionManager = $container->get('plugin.manager.ocs_ai_action');
 
     return $instance;
   }
@@ -46,6 +56,19 @@ final class OcsAiCarController extends ControllerBase {
       '#type' => 'item',
       '#markup' => $response,
     ];
+
+    $car = Car::load(1);
+
+    $description_generator = $this->aiActionManager
+      ->createInstance(DescriptionGenerator::PLUGIN_ID);
+
+    $result = $description_generator->do(['car' => $car]);
+
+    $build['generated description'] = [
+      '#type' => 'item',
+      '#markup' => $result,
+    ];
+
 
 
     return $build;

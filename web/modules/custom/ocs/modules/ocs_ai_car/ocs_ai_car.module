@@ -1,0 +1,27 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\ocs_ai_car\FormAlterer\CarFormAlterer;
+use Drupal\ocs_car\Entity\Interface\CarInterface;
+use Drupal\ocs_car\Form\CarForm;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function ocs_ai_car_form_ocs_car_form_alter(
+  array &$form,
+  FormStateInterface $form_state,
+  string $form_id,
+): void {
+  $form_object = $form_state->getFormObject();
+  if (!$form_object instanceof CarForm) {
+    return;
+  }
+
+  $car = $form_object->getEntity();
+  if ($car instanceof CarInterface) {
+    /** @var \Drupal\ocs_ai_car\FormAlterer\CarFormAlterer $company_alterer */
+    $company_alterer = \Drupal::service(CarFormAlterer::class);
+    $company_alterer->alterForm($form, $form_state);
+  }
+}

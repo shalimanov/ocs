@@ -1,0 +1,5 @@
+name: 'OCS Form'
+type: module
+description: 'Provides extended form functionality for OCS platform.'
+package: Custom
+core_version_requirement: ^10 || ^11
