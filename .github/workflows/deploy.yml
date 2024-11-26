@@ -1,0 +1,39 @@
+name: Deploy to Dev Environment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SERV }}
+
+      - name: Pull latest changes on server
+        run: |
+          ssh -o StrictHostKeyChecking=no sstan@49.13.10.161 << EOF
+          cd /home/sstan/domains/ocs.stanlove.site
+          git pull origin ${{ github.ref_name }}
+          cd ..
+          composer install --no-interaction
+          composer dump-autoload --optimize
+          drush cr
+          drush updb
+          drush cr
+          drush cim -y
+          drush cron
+          EOF
+
+      - name: Notify Deployment
+        run: echo "Deployment to dev environment is complete."
