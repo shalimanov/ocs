@@ -25,14 +25,13 @@ jobs:
           ssh -o StrictHostKeyChecking=no sstan@49.13.10.161 << EOF
           cd /home/sstan/domains/ocs.stanlove.site
           git pull origin ${{ github.ref_name }}
-          cd ..
           composer install --no-interaction
           composer dump-autoload --optimize
-          drush cr
-          drush updb
-          drush cr
-          drush cim -y
-          drush cron
+          bin/drush cr
+          bin/drush updb
+          bin/drush cr
+          bin/drush cim -y
+          bin/drush cron
           EOF
 
       - name: Notify Deployment
