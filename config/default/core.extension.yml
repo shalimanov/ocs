@@ -33,6 +33,7 @@ module:
   ocs_ai: 0
   ocs_ai_car: 0
   ocs_car: 0
+  ocs_form: 0
   options: 0
   page_cache: 0
   path_alias: 0
