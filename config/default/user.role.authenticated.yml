@@ -3,6 +3,7 @@ langcode: uk
 status: true
 dependencies:
   module:
+    - ocs_car
     - system
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
@@ -12,3 +13,6 @@ weight: 1
 is_admin: false
 permissions:
   - 'access content'
+  - 'create ocs_car'
+  - 'delete ocs_car'
+  - 'edit ocs_car'

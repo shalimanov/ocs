@@ -1,0 +1,162 @@
+uuid: 410b1414-379e-4531-8637-ef352209fe2d
+langcode: uk
+status: true
+dependencies:
+  config:
+    - image.style.thumbnail
+  module:
+    - address
+    - commerce_price
+    - field_group
+    - image
+    - ocs_car
+    - shs
+    - text
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - color
+        - year
+        - price
+        - kilometrage
+        - fuel_type
+        - transmission_type
+        - condition
+        - body_type
+        - location
+        - description
+        - photos
+        - group_general
+      label: Tabs
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        direction: horizontal
+        width_breakpoint: 640
+    group_general:
+      children:
+        - status
+        - model
+      label: Головне
+      region: hidden
+      parent_name: group_tabs
+      weight: 1
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: true
+id: ocs_car.ocs_car.default
+targetEntityType: ocs_car
+bundle: ocs_car
+mode: default
+content:
+  body_type:
+    type: options_select
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  color:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  condition:
+    type: options_select
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  description:
+    type: text_textarea
+    weight: 13
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  fuel_type:
+    type: options_select
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  kilometrage:
+    type: number
+    weight: 7
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  location:
+    type: address_default
+    weight: 12
+    region: content
+    settings:
+      wrapper_type: fieldset
+    third_party_settings: {  }
+  model:
+    type: options_shs
+    weight: 3
+    region: content
+    settings:
+      display_node_count: false
+      create_new_items: false
+      create_new_levels: false
+      force_deepest: false
+    third_party_settings: {  }
+  photos:
+    type: image_image
+    weight: 14
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  price:
+    type: commerce_price_default
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: false
+    third_party_settings: {  }
+  transmission_type:
+    type: options_select
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  year:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  uid: true
