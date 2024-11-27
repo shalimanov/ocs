@@ -20,18 +20,54 @@ class DescriptionGenerator extends OcsAiActionPluginBase {
 
   public const string PLUGIN_ID = 'car_description_generator';
 
+  private const array FIELD_MAP = [
+    'brand' => 'Марка',
+    'model' => 'Модель',
+    'body_type' => 'Тип кузова',
+    'color' => 'Колір',
+    'year' => 'Рік випуску',
+    'transmission_type' => 'Тип коробки',
+    'fuel_type' => 'Тип пального',
+    'kilometrage' => 'Пробіг',
+    'price' => 'Ціна',
+  ];
+
   /**
    * {@inheritdoc}
    */
   public function do(
     mixed $payload,
-  ): mixed {
-    $car = $payload['car'] ?? NULL;
-    if (!$car instanceof CarInterface) {
+  ): ?string {
+    $car = $this->validateCarPayload($payload);
+    if (!$car) {
       return NULL;
     }
 
-    $car_details = [
+    $car_details = $this->extractCarDetails($car);
+    if (empty($car_details)) {
+      return NULL;
+    }
+
+    $query = $this->generateQuery($car_details);
+    return $query ? $this->call($query) : NULL;
+  }
+
+  /**
+   * Validates the car payload.
+   */
+  private function validateCarPayload(
+    mixed $payload,
+  ): ?CarInterface {
+    return ($payload['car'] ?? NULL) instanceof CarInterface ? $payload['car'] : NULL;
+  }
+
+  /**
+   * Extracts car details into an array.
+   */
+  private function extractCarDetails(
+    CarInterface $car,
+  ): array {
+    return array_filter([
       'brand' => $car->getBrand(),
       'model' => $car->getModel(),
       'body_type' => $car->getBodyType(),
@@ -41,31 +77,15 @@ class DescriptionGenerator extends OcsAiActionPluginBase {
       'fuel_type' => $car->getFuelType(),
       'kilometrage' => $car->getKilometrage(),
       'price' => $car->getPrice(),
-    ];
-
-    $car_details = array_filter($car_details);
-    if (empty($car_details)) {
-      return NULL;
-    }
-
-    $query = $this->generateQuery($car_details);
-    if (empty($query)) {
-      return NULL;
-    }
-
-    return $this->call($query);
+    ]);
   }
 
   /**
-   * {@inheritdoc}
+   * Generates the query string for AI.
    */
   protected function generateQuery(
     mixed $payload,
   ): mixed {
-    if (empty($payload) || !is_array($payload)) {
-      throw new \InvalidArgumentException('Invalid or missing payload for generating query.');
-    }
-
     $prompt = "Згенерувати текст для обʼяви по продажу автомобіля: ";
     foreach ($payload as $key => $value) {
       $prompt .= sprintf("%s: %s, ", $this->mapFieldToLabel($key), $value);
@@ -93,47 +113,27 @@ class DescriptionGenerator extends OcsAiActionPluginBase {
   }
 
   /**
-   * Maps car attributes to their corresponding Ukrainian labels.
-   *
-   * @param string $field
-   *   The field name.
-   *
-   * @return string
-   *   The label in Ukrainian.
+   * Maps car attributes to their Ukrainian labels.
    */
-  private function mapFieldToLabel(string $field): string {
-    $field_map = [
-      'brand' => 'Марка',
-      'model' => 'Модель',
-      'body_type' => 'Тип кузова',
-      'color' => 'Колір',
-      'condition' => 'Стан',
-      'year' => 'Рік випуску',
-      'kilometrage' => 'Пробіг',
-      'price' => 'Ціна',
-    ];
-
-    return $field_map[$field] ?? $field;
+  private function mapFieldToLabel(
+    string $field,
+  ): string {
+    return self::FIELD_MAP[$field] ?? $field;
   }
 
   /**
-   * {@inheritdoc}
+   * Makes an AI call to generate a description.
    */
   protected function call(
     mixed $payload,
-  ): mixed {
-    if (empty($payload) || !is_string($payload)) {
-      throw new \InvalidArgumentException('Invalid payload for AI call. Expected a string query.');
+  ): ?string {
+    if (empty($payload)) {
+      return NULL;
     }
 
     try {
       $response = $this->aiClient->query($payload);
-
-      if (is_string($response) && !empty($response)) {
-        return trim($response);
-      }
-
-      throw new \RuntimeException('AI response did not contain a valid output.');
+      return is_string($response) && !empty($response) ? trim($response) : NULL;
     }
     catch (\Exception $e) {
       \Drupal::logger('ocs_ai')->error('AI Client Error: @message', [

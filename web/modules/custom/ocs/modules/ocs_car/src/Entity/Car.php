@@ -404,7 +404,7 @@ class Car extends RevisionableContentEntityBase implements CarInterface {
         'available_countries' => ['UA'],
       ])
       ->setDisplayOptions('form', [
-        'type' => 'address',
+        'type' => 'address_default',
         'weight' => 9,
       ])
       ->setDisplayConfigurable('form', TRUE)

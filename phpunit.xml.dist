@@ -53,7 +53,8 @@
   </php>
   <testsuites>
     <testsuite name="ocs">
-      <directory suffix="Test.php">./web/modules/custom/ocs/modules/**/tests/src/**</directory>
+      <directory suffix="Test.php">./web/modules/custom/ocs/modules/ocs_ai/tests/src/**</directory>
+      <directory suffix="Test.php">./web/modules/custom/ocs/modules/ocs_ai_car/tests/src/**</directory>
     </testsuite>
     <testsuite name="unit">
       <file>./web/core/tests/TestSuites/UnitTestSuite.php</file>

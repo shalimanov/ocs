@@ -11,7 +11,7 @@ use Psr\Log\LoggerInterface;
 /**
  * Class ChatGPTClient provides AI client for OpenAI ChatGPT.
  */
-final class ChatGPTClient implements AIClientInterface {
+class ChatGPTClient implements AIClientInterface {
 
   public const string CLIENT_ID = 'chatgpt';
 

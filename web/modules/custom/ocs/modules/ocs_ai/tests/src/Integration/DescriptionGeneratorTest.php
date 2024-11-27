@@ -3,9 +3,9 @@
 namespace Drupal\Tests\ocs_ai\Integration;
 
 use Drupal\ocs_ai\Plugin\OcsAiAction\DescriptionGenerator;
+use Drupal\ocs_ai\Service\ChatGPTClient;
 use Drupal\ocs_car\Entity\Car;
 use Drupal\Tests\UnitTestCase;
-use Drupal\ocs_ai\Service\AIClientInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
@@ -30,11 +30,12 @@ class DescriptionGeneratorTest extends UnitTestCase {
     $car->method('getKilometrage')->willReturn(30000);
     $car->method('getPrice')->willReturn('USD 15000');
 
-    $mock_ai_client = $this->createMock(AIClientInterface::class);
+    $mock_ai_client = $this->createMock(ChatGPTClient::class);
     $mock_ai_client->method('query')->willReturn('Generated car description');
 
     $container = new ContainerBuilder();
     $container->set('ocs_ai.client.chat_gpt', $mock_ai_client);
+    \Drupal::setContainer($container);
 
     $configuration = [];
     $plugin_id = DescriptionGenerator::PLUGIN_ID;

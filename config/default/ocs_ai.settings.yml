@@ -4,6 +4,6 @@ settings:
   clients:
     -
       client_id: chatgpt
-      api_key: 'sdf'
+      api_key: 'sdfdsf'
       endpoint: 'https://api.openai.com/v1/completions'
   default_client: chatgpt
