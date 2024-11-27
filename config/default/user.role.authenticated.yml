@@ -16,3 +16,4 @@ permissions:
   - 'create ocs_car'
   - 'delete ocs_car'
   - 'edit ocs_car'
+  - 'view ocs_car'

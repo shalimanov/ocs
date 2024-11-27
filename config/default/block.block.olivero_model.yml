@@ -1,0 +1,29 @@
+uuid: a03c08c1-c5bf-46b7-9cd3-a6cacf23f742
+langcode: uk
+status: true
+dependencies:
+  config:
+    - facets.facet.model
+  module:
+    - facets
+    - system
+  theme:
+    - olivero
+id: olivero_model
+theme: olivero
+region: sidebar
+weight: 0
+provider: null
+plugin: 'facet_block:model'
+settings:
+  id: 'facet_block:model'
+  label: Модель
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: olivero_model
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /listing
